@@ -1,1 +1,68 @@
-### Analysis of an E-commerce Dataset\n\nWe have been provided with a combined e-commerce dataset. In this dataset, each user has the ability to post a rating and review for the products they purchased. Additionally, other users can evaluate the initial rating and review by expressing their trust or distrust.\n\nThis dataset includes a wealth of information for each user. Details such as their profile, ID, gender, city of birth, product ratings (on a scale of 1-5), reviews, and the prices of the products they purchased are all included. Moreover, for each product rating, we have information about the product name, ID, price, and category, the rating score, the timestamp of the rating and review, and the average helpfulness of the rating given by others (on a scale of 1-5).\n\nThe dataset is from several data sources, and we have merged all the data into a single CSV file named \'A Combined E-commerce Dataset.csv\'. The structure of this dataset is represented in the header shown below.\n\n| userId | gender | rating | review| item | category | helpfulness | timestamp | item_id | item_price | user_city|\n\n    | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |  ---- |  ---- |  \n    \n#### Description of Fields\n\n* __userId__ - the user\'s id\n* __gender__ - the user\'s gender\n* __rating__ - the user\'s rating towards the item\n* __review__ - the user\'s review towards the item\n* __item__ - the item\'s name\n* __category__ - the category of the item\n* __helpfulness__ - the average helpfulness of this rating\n* __timestamp__ - the timestamp when the rating is created\n* __item_id__ - the item\'s id\n* __item_price__ - the item\'s price\n* __user_city__ - the city of user\'s birth\n\nNote that, a user may rate multiple items and an item may receive ratings and reviews from multiple users. The "helpfulness" is an average value based on all the helpfulness values given by others.\n\nThere are four questions to explore with the data as shown below.\n\n\n\n<img src="data-relation.png" align="left" width="400"/>\n\n\n #### Q1. Remove missing data\n \nPlease remove the following records in the csv file: \n \n * gender/rating/helpfulness is missing\n * review is \'none\'\n\n__Display the DataFrame, counting number of Null values in each column, and print the length of the data__ before and after removing the missing data.  \n\n#### Q2. Descriptive statistics\n\nWith the cleaned data in Q1, please provide the data summarization as below:\n\n* Q2.1 total number of unique users, unique reviews, unique items, and unique categories\n* Q2.2 descriptive statistics, e.g., the total number, mean, std, min and max regarding all rating records\n* Q2.3 descriptive statistics, e.g., mean, std, max, and min of the number of items rated by different genders \n* Q2.4 descriptive statistics, e.g., mean, std, max, min of the number of ratings that received by each items \n\n\n#### Q3. Plotting and Analysis\n\nPlease try to explore the correlation between gender/helpfulness/category and ratings; for instance, do female/male users tend to provide higher ratings than male/female users? Hint: you may use the boxplot function to plot figures for comparison (___Challenge___)\n    \nYou may need to select the most suitable graphic forms for ease of presentation. Most importantly, for each figure or subfigure, please summarise ___what each plot shows___ (i.e. observations and explanations). Finally, you may need to provide an overall summary of the data.\n\n*Based on the graph, it appears that both male and female users give similar ratings. For further evaluation, in the next graph, we are going to look do male/female users tend to provide higher ratings on some specific categories than male/female users.*\n\n*After analyzing the graph, it is evident that female users rated higher in 5 categories while male users rated higher in 4 categories. Overall, it can be concluded that both male and female users provided nearly identical ratings.*\n\n*The graph displays that, with the exception of Hotel & Travel, Movies, and Personal Finance, male users purchase more products across most categories than female users.*\n\n*The box plot shows user ratings for products in different categories. Books received the highest ratings with most users rating them 5 out of 5. Games had a high median rating of 5 and a lower quartile of 4. Media products had the lowest rating with a median of 2.*\n\n*The purpose of this bar chart is to demonstrate the correlation between helpfulness and review ratings. The data clearly indicates that the majority of helpful reviews are given a 5 rating. It also shows that most of reviews that are not helpful are given a 5 rating too.*\n\n## Data set summary ##\n\n*This data set captures information on users who have made purchases from various shops. The data includes details such as category, price, item identifier, rating, and review for each item purchased by users. Additionally, users have provided their own reviews of the items, and others have rated the helpfulness of those reviews. User information, including user ID, city, and gender, has also been recorded. This data set captures information on users who have made purchases from various shops. The data includes details such as category, price, item identifier, rating, and review for each item purchased by users. Additionally, users have provided their own reviews of the items, and others have rated the helpfulness of those reviews. User information, including user ID, city, and gender, has also been recorded. The overall rating for all categories and items is approximately 3.7. Blue\'s Clues is the most beloved item, with an average rating of 4.84, while Treeloot.com is the least favorite, only receiving an average rating of 1.27. The Books category is the most highly rated, with an average rating of 4.72, while Media is the lowest rated category, receiving an average rating of 2.72.*\n\n#### Q4. Detect and remove outliers\n\nWe may define outlier users, reviews and items with three rules (if a record meets one of the rules, it is regarded as an outlier):\n\n* reviews of which the helpfulness is no more than 2\n* users who rate less than 7 items\n* items that receives less than 11 ratings \n \nPlease remove the corresponding records in the csv file that involves outlier users, reviews and items. After that, __print the length of the data__.\n\n
+# E-commerce Dataset Analysis
+
+This repository contains the analysis of an e-commerce dataset. The dataset includes various user interactions with products, such as ratings, reviews, and helpfulness scores.
+
+## Dataset
+
+The dataset provided includes combined e-commerce data where each user can post ratings and reviews for purchased products. Additionally, other users can express their trust or distrust towards these ratings and reviews. The dataset contains information about user profiles, product details, and ratings.
+
+### Dataset Structure
+
+The dataset is stored in a CSV file named `A Combined E-commerce Dataset.csv`. The structure of the dataset is as follows:
+
+| userId | gender | rating | review | item | category | helpfulness | timestamp | item_id | item_price | user_city |
+|--------|--------|--------|--------|------|----------|-------------|-----------|---------|------------|-----------|
+
+### Field Descriptions
+
+- **userId**: The user's ID
+- **gender**: The user's gender
+- **rating**: The user's rating towards the item (on a scale of 1-5)
+- **review**: The user's review towards the item
+- **item**: The item's name
+- **category**: The category of the item
+- **helpfulness**: The average helpfulness of this rating (on a scale of 1-5)
+- **timestamp**: The timestamp when the rating is created
+- **item_id**: The item's ID
+- **item_price**: The item's price
+- **user_city**: The city of the user's birth
+
+## Analysis Tasks
+
+The analysis focuses on exploring the data and answering the following questions:
+
+1. **General Overview**
+   - Provide a summary of the dataset, including the total number of records and unique users.
+   - Visualize the distribution of ratings.
+
+2. **Product Category Analysis**
+   - Analyze the rating distribution across different product categories.
+   - Identify the highest and lowest-rated categories.
+
+3. **Helpfulness and Rating Correlation**
+   - Investigate the correlation between the helpfulness scores and the review ratings.
+   - Visualize the relationship to understand trends.
+
+4. **Outlier Detection and Removal**
+   - Define outliers based on specific rules:
+     - Reviews with helpfulness no more than 2.
+     - Users who rate less than 7 items.
+     - Items that receive less than 11 ratings.
+   - Remove the corresponding records involving outlier users, reviews, and items.
+   - Print the length of the data after outlier removal.
+
+## How to Run
+
+1. Clone the repository.
+2. Ensure you have all necessary dependencies installed (e.g., pandas, matplotlib).
+3. Open the Jupyter notebook and follow the steps outlined to complete the analysis.
+
+## Repository Structure
+
+- `data/` : Contains the dataset used for analysis
+- `notebooks/` : Jupyter notebooks with the analysis steps
+- `README.md` : This file
+
+## Conclusion
+
+This project demonstrates the process of analyzing an e-commerce dataset to extract insights about user behavior, product ratings, and review helpfulness. The analysis involves data exploration, visualization, and outlier detection to ensure data quality.
